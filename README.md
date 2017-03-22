@@ -10,11 +10,11 @@
 
    Code - <a href="https://github.com/jacobgil/keras-dcgan">Keras Implementation of DCGANs</a>
 
-==>Steps involves in the process,
-    1. Train the Deep Convolutional Generative Adversarial Networks with the datset in an unsupervised manner. 
-    2. Reuse the Discriminator for semi supervised classification on the MNIST/CIFAR10 datasets.
-      -> This is done by freezing the weights of the discriminator network while supervised training.
-      -> Currently working with one FC softmax layer on top of the leaned feauture layers
+==>Steps involves in the process,<br>
+    1. Train the Deep Convolutional Generative Adversarial Networks with the datset in an unsupervised manner. <br>
+    2. Reuse the Discriminator for semi supervised classification on the MNIST/CIFAR10 datasets.<br>
+      &nbsp;&nbsp; -> This is done by freezing the weights of the discriminator network while supervised training.<br>
+      &nbsp;&nbsp;-> Currently working with one FC softmax layer on top of the leaned feauture layers
 
 ==>Instructions for running:
 For working with the MNIST dataset,
