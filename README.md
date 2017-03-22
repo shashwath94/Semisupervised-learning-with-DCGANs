@@ -10,6 +10,8 @@
 
    Code - <a href="https://github.com/jacobgil/keras-dcgan">Keras Implementation of DCGANs</a>
 
+Currently works for Keras with Tensorflow Backend. Will add theano support soon.
+
 ==>Steps involves in the process,<br>
     1. Train the Deep Convolutional Generative Adversarial Networks with the datset in an unsupervised manner. <br>
     2. Reuse the Discriminator for semi supervised classification on the MNIST/CIFAR10 datasets.<br>
