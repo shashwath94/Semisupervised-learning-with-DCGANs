@@ -18,6 +18,8 @@ Currently works for Keras with Tensorflow Backend. Will add theano support soon.
       &nbsp;&nbsp; -> This is done by freezing the weights of the discriminator network while supervised training.<br>
       &nbsp;&nbsp;-> Currently working with one FC softmax layer on top of the leaned feauture layers
 
+==> The trained weights are stored in their respective HDF5 files.
+
 ==>Instructions for running:
 For working with the MNIST dataset,
 
@@ -34,4 +36,6 @@ Training the model - python cifar_gan.py --mode train --batch_size 128 --epoch_n
 To generate Images - python cifar_gan.py --mode generate --batch_size 64 --nice
 
 To run the semisupervised classifier - python cifar_gan.py
+
+
 
