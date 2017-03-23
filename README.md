@@ -23,9 +23,9 @@ Currently works for Keras with Tensorflow Backend. Will add theano support soon.
 ==>Instructions for running:
 For working with the MNIST dataset,
 
-Training the model - python test.py --mode train --batch_size 128 --epoch_num 200
+Training the model - python mnist_gan.py --mode train --batch_size 128 --epoch_num 200
 
-To generate Images - python test.py --mode generate --batch_size 64 --nice
+To generate Images - python mnist_gan.py --mode generate --batch_size 64 --nice
 
 To run the semisupervised classifier - python mnist.py
 
