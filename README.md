@@ -35,7 +35,7 @@ Training the model - python cifar_gan.py --mode train --batch_size 128 --epoch_n
 
 To generate Images - python cifar_gan.py --mode generate --batch_size 64 --nice
 
-To run the semisupervised classifier - python cifar_gan.py
+To run the semisupervised classifier - python cifar.py
 
 
 
