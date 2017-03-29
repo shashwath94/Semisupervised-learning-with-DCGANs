@@ -28,28 +28,7 @@ img_rows = 28
 img_cols = 28
 
 
-'''
-def Generator():
 
-    model = Sequential()
-    model.add(Dense(16384, input_dim=100))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Reshape((4, 4, 1024)))
-    model.add(Deconvolution2D(512, 2, 2, output_shape=(None, 8, 8, 512), subsample=(2,2) ,border_mode='valid', input_shape=(4, 4, 1024)))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Deconvolution2D(256, 2, 2, output_shape=(None, 16, 16, 256), subsample=(2,2) ,border_mode='valid'))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Deconvolution2D(128, 2, 2, output_shape=(None, 32, 32, 128), subsample=(2,2) ,border_mode='valid'))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Deconvolution2D(3, 2, 2, output_shape=(None, 64, 64, 3), subsample=(2,2) ,border_mode='valid'))
-    model.add(Activation('tanh'))
-    print model.summary()
-    return model
-'''
 
 def Generator():
     # bulid the generator model, it is a model made up of UpSample and Convolution
@@ -77,7 +56,7 @@ def Discriminator():
     # build the discriminator model, it is one common convolutional neural network
     model = Sequential()
     # different backend has different image dim order, so we need to judge first.
-    input_shape = (28,28,1)
+    input_shape = (img_rows, img_cols, 1)
     model.add(Convolution2D(64, 5, 5, border_mode='same',subsample=(2, 2), input_shape=input_shape))
     #model.add(LeakyReLU(0.02))
     model.add(Activation('tanh'))
