@@ -50,34 +50,7 @@ def Generator():
     print model.summary()
     return model
 '''
-'''
-def Generator():
 
-    model = Sequential()
-    model.add(Dense(input_dim=100, output_dim=1024))
-    model.add(BatchNormalization())
-    model.add(Reshape((2, 2, 256), input_shape=(1024,)))
-    model.add(Activation('relu'))
-    #model.add(Dense(128*7*7))
-    model.add(Deconvolution2D(128, 2, 2, output_shape=(None, 7, 7, 128), subsample=(2,2) ,border_mode='valid', input_shape=(2, 2, 256)))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Reshape((7, 7, 128), input_shape=(128*7*7,)))
-    #model.add(UpSampling2D(size=(2, 2)))
-    model.add(Deconvolution2D(64, 2, 2, output_shape=(None, 14, 14, 64), subsample=(2,2) ,border_mode='valid', input_shape=(7, 7, 128)))
-    #model.add(Convolution2D(64, 5, 5, border_mode='same'))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    #model.add(BatchNormalization())
-    #model.add(UpSampling2D(size=(2, 2)))
-    #model.add(Convolution2D(1, 5, 5, border_mode='same'))
-    #model.add(Activation('relu'))
-    model.add(Deconvolution2D(1, 2, 2, output_shape=(None, 28, 28, 1), subsample=(2,2) ,border_mode='valid'))
-    model.add(Activation('tanh'))
-    print model.summary()
-    return model
-
-'''
 def Generator():
     # bulid the generator model, it is a model made up of UpSample and Convolution
     model = Sequential()
@@ -98,26 +71,7 @@ def Generator():
     print model.summary()
     return model
 
-'''
-def Discriminator():
-    model = Sequential()
-    model.add(Convolution2D(128, 5, 5, border_mode='same',subsample=(2, 2), input_shape=(28, 28, 1)))
-    model.add(BatchNormalization())
-    model.add(LeakyReLU(0.2))
-    model.add(Convolution2D(256, 5, 5, border_mode='same', subsample=(2,2)))
-    model.add(BatchNormalization())
-    model.add(LeakyReLU(0.2))
-    #model.add(Convolution2D(512, 5, 5, border_mode='same', subsample=(2,2)))
-    #model.add(BatchNormalization())
-    #model.add(LeakyReLU(0.2))
-    #model.add(Convolution2D(1024, 5, 5, border_mode='same', subsample=(4,4)))
-    model.add(Flatten())
-    model.add(Dense(1))
-    model.add(Activation('sigmoid'))
 
-    print model.summary()
-    return model
-'''
 
 def Discriminator():
     # build the discriminator model, it is one common convolutional neural network
@@ -151,17 +105,7 @@ def generator_containing_discriminator(generator, discriminator):
     return model
 # Note that you will have to change the output_shape depending on the backend used.
 
-'''
-# we can predict with the model and print the shape of the array.
-X = np.random.uniform(-1, 1, (32,100))
-print X.shape
-dummy_input = np.ones((32, 4, 4, 1024))
-# For TensorFlow dummy_input = np.ones((32, 12, 12, 3))
-model = Generator()
-preds = model.predict(X)
-print(preds.shape)
-discriminator = Discriminator()
-'''
+
 
 def combine_images(generated_images):
     num = generated_images.shape[0]
