@@ -129,7 +129,7 @@ def train(BATCH_SIZE, epoch_num):
         print("Number of batches", int(X_train.shape[0]/BATCH_SIZE))
         for index in range(batches_num):
             for i in range(BATCH_SIZE):
-                noise[i, :] = np.random.uniform(-1, 1, 100)
+                noise[i, :] = np.random.normal(0, 0.02, 100)
                 #print 'noise', noise.dtype
             discriminator.trainable = False
             g_loss = discriminator_on_generator.train_on_batch(
@@ -141,7 +141,7 @@ def train(BATCH_SIZE, epoch_num):
             print("epoch %d/%d batch %d/%d g_loss : %f" % (epoch+1, epoch_num,index, batches_num, g_loss))
 
             for i in range(BATCH_SIZE):
-                noise[i, :] = np.random.uniform(-1, 1, 100)
+                noise[i, :] = np.random.normal(0, 0.02, 100)
             image_batch = X_train[index*BATCH_SIZE:(index+1)*BATCH_SIZE]
             generated_images = generator.predict(noise, verbose=0)
             if index % 80 == 0:
@@ -180,7 +180,7 @@ def generate(BATCH_SIZE, nice=False):
         discriminator.load_weights('discriminator')
         noise = np.zeros((BATCH_SIZE*20, 100))
         for i in range(BATCH_SIZE*20):
-            noise[i, :] = np.random.uniform(-1, 1, 100)
+            noise[i, :] = np.random.normal(0, 0.02, 100)
         generated_images = generator.predict(noise, verbose=1)
         d_pret = discriminator.predict(generated_images, verbose=1)
         index = np.arange(0, BATCH_SIZE*20)
@@ -196,7 +196,7 @@ def generate(BATCH_SIZE, nice=False):
     else:
         noise = np.zeros((BATCH_SIZE, 100))
         for i in range(BATCH_SIZE):
-            noise[i, :] = np.random.uniform(-1, 1, 100)
+            noise[i, :] = np.random.normal(0, 0.02, 100)
         generated_images = generator.predict(noise, verbose=1)
         image = combine_images(generated_images)
     image = image*127.5+127.5
