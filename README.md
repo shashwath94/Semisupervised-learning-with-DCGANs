@@ -37,7 +37,7 @@ To generate Images - python cifar_gan.py --mode generate --batch_size 64 --nice
 
 To run the semisupervised classifier - python cifar.py
 
-For working with the google SVHN dataset,
+For working with the google SVHN dataset, <br><br>
 The code assumes that the 'train_32x32.mat' and 'test_32x32.mat' files are present in the current project directory.
 
 Training the model - python svhn_gan.py --mode train --batch_size 128 --epoch_num 100
