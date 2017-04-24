@@ -24,15 +24,86 @@ img_cols = 28
 #loading the mnist dataInit
 (X_train, Y_train), (X_test, Y_test) = mnist.load_data()
 
+X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
+
+def get_data(label, n):
+    #X = np.empty(n, img_rows, img_cols, 1)
+    #Y = np.empty(n, 1)
+    X = []
+    Y = []
+    #for i in range(num_classes):
+    index = np.where(Y_train == label)[0]
+    print(len(index))
+    #np.append(X, X_train[index,:,:,:])
+    X = X_train[index,:]
+    #X = X[n,:]
+    Y = Y_train[index]
+    #Y = Y[n]
+    #return X, Y
+    X = np.asarray(X)
+    X = X[:n]
+    print('X', X.shape)
+    Y = np.asarray(Y)
+    Y = Y[:n]
+    return X, Y
+#print(X[2].shape, Y.shape)
+X_10, Y_10 = get_data(0, 100)
+#print(X_10.shape, Y_10.shape)
+#image = X_10[2,:,:]
+#image = image.reshape((28,28))
+#print(image.shape)
+#plt.imshow(image, cmap='gray')
+#plt.show()
+X_1, Y_1 = get_data(1, 100)
+X_2, Y_2 = get_data(2, 100)
+X_3, Y_3 = get_data(3, 100)
+X_4, Y_4 = get_data(4, 100)
+X_5, Y_5 = get_data(5, 100)
+X_6, Y_6 = get_data(6, 100)
+X_7, Y_7 = get_data(7, 100)
+X_8, Y_8 = get_data(8, 100)
+X_9, Y_9 = get_data(9, 100)
+X = np.concatenate((X_10, X_5, X_2, X_8, X_1, X_4, X_9, X_3, X_6, X_7))
+Y = np.concatenate((Y_10, Y_5, Y_2, Y_8, Y_1, Y_4, Y_9, Y_3, Y_6, Y_7))
+print(X.shape, Y.shape)
+permutation = np.random.permutation(X.shape[0])
+X_train = X[permutation]
+Y_train = Y[permutation]
+'''
 divided_input = np.array_split(X_train, 300)
 X_train = divided_input[0]
 divided_output = np.array_split(Y_train, 300)
 Y_train = divided_output[0]
 
-divided_inputtest = np.array_split(X_test, 125)
+print (Y_train.shape)
+
+divided_inputtest = np.array_split(X_test, 100)
 X_test = divided_inputtest[0]
-divided_outputtest = np.array_split(Y_test, 125)
+divided_outputtest = np.array_split(Y_test, 100)
 Y_test = divided_outputtest[0]
+'''
+
+#reshaping for input to network
+X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
+X_test = X_test.reshape(X_test.shape[0], img_rows, img_cols, 1)
+input_shape = (img_rows, img_cols, 1)
+
+#making data float datatype
+X_train = X_train.astype('float32')
+X_test = X_test.astype('float32')
+
+#normalizing the data
+X_train /= 255
+X_test /= 255
+
+print('x_train shape:', X_train.shape)
+print(X_train.shape[0], 'train samples')
+print(X_test.shape[0], 'test samples')
+
+#convert class vectors to one hot encoded vectors
+Y_train = np_utils.to_categorical(Y_train, num_classes)
+Y_test = np_utils.to_categorical(Y_test, num_classes)
+print (Y_train.shape)
 
 
 #reshaping for input to network
